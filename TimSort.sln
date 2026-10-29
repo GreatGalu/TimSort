@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37628.2 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimSort", "TimSort\TimSort.csproj", "{D630CE7C-FA48-41EE-8CB4-090653871370}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D630CE7C-FA48-41EE-8CB4-090653871370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D630CE7C-FA48-41EE-8CB4-090653871370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D630CE7C-FA48-41EE-8CB4-090653871370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D630CE7C-FA48-41EE-8CB4-090653871370}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F765D5C4-6433-4ACC-8D31-DA49A89691C5}
+	EndGlobalSection
+EndGlobal
