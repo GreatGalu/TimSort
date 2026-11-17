@@ -181,7 +181,6 @@ namespace TimSort.Services
 
                 if (targetType == typeof(CustomItem))
                 {
-                    // Soporta formatos "1,Nombre", "1;Nombre" o formato de ToString "[ID: 1] Nombre"
                     var parts = line.Split(new[] { ',', ';', '|' }, StringSplitOptions.RemoveEmptyEntries);
                     if (parts.Length >= 2 && int.TryParse(parts[0].Trim(), out int id))
                     {
@@ -204,7 +203,6 @@ namespace TimSort.Services
                 }
                 else
                 {
-                    // Puede venir un solo elemento por línea o múltiples separados por comas/espacios/puntos y comas
                     string[] tokens = line.Split(new[] { ',', ';', '\t' }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string token in tokens)
                     {
@@ -239,7 +237,6 @@ namespace TimSort.Services
 
                 if (type == typeof(double))
                 {
-                    // Soporta separador decimal de punto '.' o de coma ','
                     string normalized = input.Replace(',', '.');
                     if (double.TryParse(normalized, NumberStyles.Float, CultureInfo.InvariantCulture, out double dVal))
                     {
@@ -283,15 +280,28 @@ namespace TimSort.Services
         #endregion
 
         /// <summary>
-        /// Genera elementos aleatorios de forma dinámica según la cantidad y el tipo de dato.
+        /// Genera elementos aleatorios según la cantidad y el tipo de dato.
+        /// Incluye variantes de acentos y mayúsculas/minúsculas para evaluar la normalización Unicode.
         /// </summary>
-        public static List<T> GenerateRandomData<T>(int count, int minValue = 1, int maxValue = 1000) where T : IComparable<T>
+        public static List<T> GenerateRandomData<T>(int count, int minValue = 1, int maxValue = 1000)
         {
             List<T> list = new(count);
             Type type = typeof(T);
 
-            string[] sampleWords = { "Alpha", "Beta", "Gamma", "Delta", "TimSort", "Code", "Data", "Struct", "Node", "List", "Array", "Buffer" };
-            string[] customItemNames = { "Laptop", "Teclado", "Mouse", "Monitor", "Servidor", "Router", "Switch", "Tablet", "Memoria", "Disco" };
+            string[] sampleWords = {
+                "Árbol", "avion", "ángel", "Algoritmo", "Barco", "Beta", "Código", "Delta",
+                "Estructura", "éxito", "Función", "Memoria", "orden", "Optimización", "Pila",
+                "Rendimiento", "TimSort", "Uva", "último", "universidad", "übersetzung", "único", "útil"
+            };
+
+            char[] sampleChars = {
+                'A', 'a', 'á', 'Á', 'B', 'b', 'C', 'c', 'E', 'e', 'é', 'É',
+                'I', 'i', 'í', 'O', 'o', 'ó', 'U', 'u', 'ú', 'ü', 'Ú', 'Ü', 'Z', 'z'
+            };
+
+            string[] customItemNames = {
+                "Laptop", "Teclado", "Mouse", "Monitor", "Servidor", "Router", "Switch", "Tablet", "Memoria", "Disco"
+            };
 
             for (int i = 0; i < count; i++)
             {
@@ -307,11 +317,11 @@ namespace TimSort.Services
                 }
                 else if (type == typeof(char))
                 {
-                    value = (char)Rand.Next('A', 'Z' + 1);
+                    value = sampleChars[Rand.Next(sampleChars.Length)];
                 }
                 else if (type == typeof(string))
                 {
-                    value = sampleWords[Rand.Next(sampleWords.Length)] + "_" + Rand.Next(1, 999);
+                    value = sampleWords[Rand.Next(sampleWords.Length)] + "_" + Rand.Next(1, 99);
                 }
                 else if (type == typeof(CustomItem))
                 {

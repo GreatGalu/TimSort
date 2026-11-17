@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace TimSort.Models
 {
     /// <summary>
-    /// Almacena las métricas de rendimiento y la trazabilidad (paso a paso) del algoritmo TimSort.
+    /// Almacena las métricas de rendimiento, bitácora de movimientos y trazabilidad del algoritmo TimSort.
     /// </summary>
     public class SortMetrics
     {
@@ -14,18 +14,27 @@ namespace TimSort.Models
         public long ElapsedTicks { get; set; }
 
         /// <summary>
-        /// Registro textual de cada comparación, desplazamiento, inserción y fusión realizada.
+        /// Indica si el ordenamiento final fue verificado y validado con éxito.
+        /// </summary>
+        public bool IsSortedSuccessfully { get; set; }
+        public string VerificationMessage { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Registro textual detallado de todas las operaciones (comparaciones, fusiones, runs).
         /// </summary>
         public List<string> TraceSteps { get; } = new();
 
         /// <summary>
-        /// Límite máximo de pasos a guardar en memoria/interfaz para evitar saturación de la UI.
+        /// Bitácora específica de movimientos e intercambios (swaps) realizados.
         /// </summary>
-        public int MaxTraceSteps { get; set; } = 1000;
+        public List<string> MovementsLog { get; } = new();
 
         /// <summary>
-        /// Indica si se debe registrar el detalle paso a paso.
+        /// Instantáneas del arreglo tomadas en cada fase/pasada para la matriz visual horizontal.
         /// </summary>
+        public List<SortStepSnapshot> Snapshots { get; } = new();
+
+        public int MaxTraceSteps { get; set; } = 2000;
         public bool RecordSteps { get; set; } = true;
 
         public void AddStep(string step)
@@ -38,7 +47,21 @@ namespace TimSort.Models
             }
             else if (TraceSteps.Count == MaxTraceSteps)
             {
-                TraceSteps.Add($"... [Límite de {MaxTraceSteps} pasos alcanzado en la vista previa para proteger el rendimiento de la interfaz gráfica] ...");
+                TraceSteps.Add($"... [Límite de {MaxTraceSteps} pasos alcanzado en la vista previa] ...");
+            }
+        }
+
+        public void AddMovement(string movement)
+        {
+            if (!RecordSteps) return;
+
+            if (MovementsLog.Count < MaxTraceSteps)
+            {
+                MovementsLog.Add(movement);
+            }
+            else if (MovementsLog.Count == MaxTraceSteps)
+            {
+                MovementsLog.Add($"... [Límite de {MaxTraceSteps} movimientos alcanzado en la bitácora visual] ...");
             }
         }
     }
