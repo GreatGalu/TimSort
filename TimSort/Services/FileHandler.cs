@@ -21,6 +21,68 @@ namespace TimSort.Services
         };
 
         /// <summary>
+        /// Arreglo de respaldo con más de 120 palabras reales variadas en español,
+        /// con acentos, diéresis, letra 'ñ' y combinación de mayúsculas/minúsculas.
+        /// </summary>
+        private static readonly string[] FallbackRealWords = new string[]
+        {
+            "Úrsula", "último", "pingüino", "árbol", "Ángel", "alga", "niño", "Ñandú", "Éxito", "elefante",
+            "Óscar", "ozono", "cigüeña", "vergüenza", "paragüero", "bilingüe", "agüita", "pedigüeño", "ungüento", "argüir",
+            "año", "otoño", "mañana", "leña", "caña", "piña", "señal", "muñeca", "añejo", "campaña",
+            "sueño", "daño", "África", "América", "ávido", "ágil", "átomo", "ámbar", "árbitro", "álbum",
+            "ánfora", "áspero", "Época", "éxtasis", "ético", "ébano", "élite", "épico", "éter", "éxodo",
+            "Índice", "ídolo", "íntimo", "ítem", "ígneo", "ícono", "Ópera", "ómnibus", "óptimo", "órbita",
+            "óxido", "óvulo", "órgano", "óleo", "Único", "útil", "úlcera", "útero", "uranio", "universo",
+            "algoritmo", "estructura", "memoria", "variable", "función", "interfaz", "arreglo", "pila", "cola", "grafo",
+            "recursión", "búsqueda", "binaria", "diccionario", "cadena", "proceso", "bloqueo", "servidor", "cliente", "consulta",
+            "transacción", "cifrado", "autenticación", "sesión", "módulo", "paquete", "terminal", "consola", "excepción", "delegado",
+            "expresión", "archivo", "directorio", "diseño", "patrón", "sistema", "núcleo", "rendimiento", "prueba", "despliegue",
+            "nube", "servicio", "código", "fuente", "mantenibilidad", "escalabilidad", "arquitectura", "controlador", "modelo", "vista",
+            "componente", "método", "parámetro", "condicional", "modularidad", "abstracción", "encapsulamiento", "barco", "cielo", "fuego",
+            "tierra", "viento", "sol", "luna", "estrella", "montaña", "río", "bosque", "puente", "camino", "playa", "selva"
+        };
+
+        /// <summary>
+        /// Carga el conjunto de palabras reales desde el archivo "DatosPrueba/palabras_200.txt".
+        /// Si no se encuentra, recurre al catálogo de respaldo en memoria.
+        /// </summary>
+        public static List<string> LoadRealWordsPool()
+        {
+            string[] candidatePaths = new string[]
+            {
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DatosPrueba", "palabras_200.txt"),
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "DatosPrueba", "palabras_200.txt"),
+                Path.Combine(Directory.GetCurrentDirectory(), "DatosPrueba", "palabras_200.txt"),
+                Path.Combine("DatosPrueba", "palabras_200.txt")
+            };
+
+            foreach (string path in candidatePaths)
+            {
+                try
+                {
+                    if (File.Exists(path))
+                    {
+                        var lines = File.ReadAllLines(path, Encoding.UTF8)
+                            .Select(line => line.Trim())
+                            .Where(line => !string.IsNullOrWhiteSpace(line))
+                            .ToList();
+
+                        if (lines.Count > 0)
+                        {
+                            return lines;
+                        }
+                    }
+                }
+                catch
+                {
+                    // Intentar con la siguiente ruta candidata
+                }
+            }
+
+            return new List<string>(FallbackRealWords);
+        }
+
+        /// <summary>
         /// Guarda los datos en el formato adecuado según la extensión del archivo (.json, .xml, .txt, .csv).
         /// </summary>
         public static void SaveToFile<T>(IEnumerable<T> data, string filePath)
@@ -281,27 +343,39 @@ namespace TimSort.Services
 
         /// <summary>
         /// Genera elementos aleatorios según la cantidad y el tipo de dato.
-        /// Incluye variantes de acentos y mayúsculas/minúsculas para evaluar la normalización Unicode.
+        /// Para cadenas, utiliza palabras reales del archivo DatosPrueba/palabras_200.txt (o catálogo de respaldo)
+        /// sin sufijos numéricos.
         /// </summary>
         public static List<T> GenerateRandomData<T>(int count, int minValue = 1, int maxValue = 1000)
         {
             List<T> list = new(count);
             Type type = typeof(T);
 
-            string[] sampleWords = {
-                "Árbol", "avion", "ángel", "Algoritmo", "Barco", "Beta", "Código", "Delta",
-                "Estructura", "éxito", "Función", "Memoria", "orden", "Optimización", "Pila",
-                "Rendimiento", "TimSort", "Uva", "último", "universidad", "übersetzung", "único", "útil"
-            };
-
             char[] sampleChars = {
-                'A', 'a', 'á', 'Á', 'B', 'b', 'C', 'c', 'E', 'e', 'é', 'É',
-                'I', 'i', 'í', 'O', 'o', 'ó', 'U', 'u', 'ú', 'ü', 'Ú', 'Ü', 'Z', 'z'
+                'A', 'a', 'á', 'Á', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'é', 'É',
+                'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'í', 'Í', 'J', 'j', 'L', 'l',
+                'M', 'm', 'N', 'n', 'ñ', 'Ñ', 'O', 'o', 'ó', 'Ó', 'P', 'p', 'Q', 'q',
+                'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'ú', 'Ú', 'ü', 'Ü', 'V', 'v',
+                'Z', 'z'
             };
 
             string[] customItemNames = {
                 "Laptop", "Teclado", "Mouse", "Monitor", "Servidor", "Router", "Switch", "Tablet", "Memoria", "Disco"
             };
+
+            if (type == typeof(string))
+            {
+                var pool = LoadRealWordsPool();
+                // Mezcla aleatoria de palabras reales
+                var shuffled = pool.OrderBy(_ => Rand.Next()).ToList();
+
+                for (int i = 0; i < count; i++)
+                {
+                    string word = shuffled[i % shuffled.Count];
+                    list.Add((T)(object)word);
+                }
+                return list;
+            }
 
             for (int i = 0; i < count; i++)
             {
@@ -319,14 +393,10 @@ namespace TimSort.Services
                 {
                     value = sampleChars[Rand.Next(sampleChars.Length)];
                 }
-                else if (type == typeof(string))
-                {
-                    value = sampleWords[Rand.Next(sampleWords.Length)] + "_" + Rand.Next(1, 99);
-                }
                 else if (type == typeof(CustomItem))
                 {
                     int id = Rand.Next(minValue, maxValue + 1);
-                    string name = customItemNames[Rand.Next(customItemNames.Length)] + "_" + (i + 1);
+                    string name = customItemNames[Rand.Next(customItemNames.Length)] + " " + id;
                     value = new CustomItem(id, name);
                 }
                 else

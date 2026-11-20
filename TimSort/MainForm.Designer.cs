@@ -32,8 +32,8 @@ namespace TimSort
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pnlSidebar = new Panel();
             grpMetrics = new GroupBox();
             lblMetricVerification = new Label();
@@ -117,9 +117,10 @@ namespace TimSort
             pnlSidebar.Controls.Add(grpDataConfig);
             pnlSidebar.Dock = DockStyle.Left;
             pnlSidebar.Location = new Point(0, 0);
+            pnlSidebar.Margin = new Padding(3, 4, 3, 4);
             pnlSidebar.Name = "pnlSidebar";
-            pnlSidebar.Padding = new Padding(10);
-            pnlSidebar.Size = new Size(310, 681);
+            pnlSidebar.Padding = new Padding(11, 13, 11, 13);
+            pnlSidebar.Size = new Size(354, 908);
             pnlSidebar.TabIndex = 0;
             // 
             // grpMetrics
@@ -130,21 +131,23 @@ namespace TimSort
             grpMetrics.Controls.Add(lblMetricTime);
             grpMetrics.Dock = DockStyle.Top;
             grpMetrics.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            grpMetrics.Location = new Point(10, 520);
+            grpMetrics.Location = new Point(11, 693);
+            grpMetrics.Margin = new Padding(3, 4, 3, 4);
             grpMetrics.Name = "grpMetrics";
-            grpMetrics.Size = new Size(290, 150);
+            grpMetrics.Padding = new Padding(3, 4, 3, 4);
+            grpMetrics.Size = new Size(332, 200);
             grpMetrics.TabIndex = 3;
             grpMetrics.TabStop = false;
-            grpMetrics.Text = "📊 Métricas y Verificación";
+            grpMetrics.Text = "Métricas y Verificación";
             // 
             // lblMetricVerification
             // 
             lblMetricVerification.AutoEllipsis = true;
             lblMetricVerification.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             lblMetricVerification.ForeColor = Color.ForestGreen;
-            lblMetricVerification.Location = new Point(12, 95);
+            lblMetricVerification.Location = new Point(14, 127);
             lblMetricVerification.Name = "lblMetricVerification";
-            lblMetricVerification.Size = new Size(265, 45);
+            lblMetricVerification.Size = new Size(303, 60);
             lblMetricVerification.TabIndex = 3;
             lblMetricVerification.Text = "Estado: Pendiente de ordenamiento.";
             // 
@@ -152,9 +155,9 @@ namespace TimSort
             // 
             lblMetricMovements.AutoSize = true;
             lblMetricMovements.Font = new Font("Segoe UI", 9F);
-            lblMetricMovements.Location = new Point(12, 72);
+            lblMetricMovements.Location = new Point(14, 96);
             lblMetricMovements.Name = "lblMetricMovements";
-            lblMetricMovements.Size = new Size(137, 15);
+            lblMetricMovements.Size = new Size(166, 20);
             lblMetricMovements.TabIndex = 2;
             lblMetricMovements.Text = "Movimientos (Swaps): 0";
             // 
@@ -162,9 +165,9 @@ namespace TimSort
             // 
             lblMetricComparisons.AutoSize = true;
             lblMetricComparisons.Font = new Font("Segoe UI", 9F);
-            lblMetricComparisons.Location = new Point(12, 48);
+            lblMetricComparisons.Location = new Point(14, 64);
             lblMetricComparisons.Name = "lblMetricComparisons";
-            lblMetricComparisons.Size = new Size(106, 15);
+            lblMetricComparisons.Size = new Size(127, 20);
             lblMetricComparisons.TabIndex = 1;
             lblMetricComparisons.Text = "Comparaciones: 0";
             // 
@@ -172,9 +175,9 @@ namespace TimSort
             // 
             lblMetricTime.AutoSize = true;
             lblMetricTime.Font = new Font("Segoe UI", 9F);
-            lblMetricTime.Location = new Point(12, 24);
+            lblMetricTime.Location = new Point(14, 32);
             lblMetricTime.Name = "lblMetricTime";
-            lblMetricTime.Size = new Size(88, 15);
+            lblMetricTime.Size = new Size(98, 20);
             lblMetricTime.TabIndex = 0;
             lblMetricTime.Text = "Tiempo: 0 ms";
             // 
@@ -189,31 +192,34 @@ namespace TimSort
             grpExecution.Controls.Add(btnSort);
             grpExecution.Dock = DockStyle.Top;
             grpExecution.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            grpExecution.Location = new Point(10, 275);
+            grpExecution.Location = new Point(11, 366);
+            grpExecution.Margin = new Padding(3, 4, 3, 4);
             grpExecution.Name = "grpExecution";
-            grpExecution.Size = new Size(290, 245);
+            grpExecution.Padding = new Padding(3, 4, 3, 4);
+            grpExecution.Size = new Size(332, 327);
             grpExecution.TabIndex = 2;
             grpExecution.TabStop = false;
-            grpExecution.Text = "⚙ Ejecución de TimSort";
+            grpExecution.Text = " Ejecución de TimSort";
             // 
             // lblSpeed
             // 
             lblSpeed.AutoSize = true;
             lblSpeed.Font = new Font("Segoe UI", 8.25F);
-            lblSpeed.Location = new Point(12, 175);
+            lblSpeed.Location = new Point(14, 233);
             lblSpeed.Name = "lblSpeed";
-            lblSpeed.Size = new Size(137, 13);
+            lblSpeed.Size = new Size(178, 19);
             lblSpeed.TabIndex = 6;
             lblSpeed.Text = "Velocidad animación: 20 ms";
             // 
             // tbSpeed
             // 
             tbSpeed.LargeChange = 20;
-            tbSpeed.Location = new Point(10, 192);
+            tbSpeed.Location = new Point(11, 256);
+            tbSpeed.Margin = new Padding(3, 4, 3, 4);
             tbSpeed.Maximum = 150;
             tbSpeed.Minimum = 2;
             tbSpeed.Name = "tbSpeed";
-            tbSpeed.Size = new Size(267, 45);
+            tbSpeed.Size = new Size(305, 56);
             tbSpeed.SmallChange = 5;
             tbSpeed.TabIndex = 5;
             tbSpeed.TickFrequency = 20;
@@ -226,12 +232,14 @@ namespace TimSort
             chkSound.Checked = true;
             chkSound.CheckState = CheckState.Checked;
             chkSound.Font = new Font("Segoe UI", 8.25F);
-            chkSound.Location = new Point(12, 150);
+            chkSound.Location = new Point(14, 200);
+            chkSound.Margin = new Padding(3, 4, 3, 4);
             chkSound.Name = "chkSound";
-            chkSound.Size = new Size(198, 17);
+            chkSound.Size = new Size(234, 23);
             chkSound.TabIndex = 4;
-            chkSound.Text = "🔊 Efecto de sonido en swaps (Beep)";
+            chkSound.Text = "Efecto de sonido en swaps (Beep)";
             chkSound.UseVisualStyleBackColor = true;
+            chkSound.CheckedChanged += chkSound_CheckedChanged;
             // 
             // chkRecordTrace
             // 
@@ -239,11 +247,12 @@ namespace TimSort
             chkRecordTrace.Checked = true;
             chkRecordTrace.CheckState = CheckState.Checked;
             chkRecordTrace.Font = new Font("Segoe UI", 8.25F);
-            chkRecordTrace.Location = new Point(12, 130);
+            chkRecordTrace.Location = new Point(14, 173);
+            chkRecordTrace.Margin = new Padding(3, 4, 3, 4);
             chkRecordTrace.Name = "chkRecordTrace";
-            chkRecordTrace.Size = new Size(183, 17);
+            chkRecordTrace.Size = new Size(200, 23);
             chkRecordTrace.TabIndex = 3;
-            chkRecordTrace.Text = "📝 Registrar bitácora de pasos";
+            chkRecordTrace.Text = " Registrar bitácora de pasos";
             chkRecordTrace.UseVisualStyleBackColor = true;
             // 
             // btnStopVisualSort
@@ -252,11 +261,12 @@ namespace TimSort
             btnStopVisualSort.Enabled = false;
             btnStopVisualSort.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnStopVisualSort.ForeColor = Color.DarkRed;
-            btnStopVisualSort.Location = new Point(12, 95);
+            btnStopVisualSort.Location = new Point(14, 127);
+            btnStopVisualSort.Margin = new Padding(3, 4, 3, 4);
             btnStopVisualSort.Name = "btnStopVisualSort";
-            btnStopVisualSort.Size = new Size(265, 30);
+            btnStopVisualSort.Size = new Size(303, 40);
             btnStopVisualSort.TabIndex = 2;
-            btnStopVisualSort.Text = "⏹ Detener Animación";
+            btnStopVisualSort.Text = "Detener Animación";
             btnStopVisualSort.UseVisualStyleBackColor = false;
             btnStopVisualSort.Click += btnStopVisualSort_Click;
             // 
@@ -265,11 +275,12 @@ namespace TimSort
             btnLiveVisualSort.BackColor = Color.LightCyan;
             btnLiveVisualSort.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnLiveVisualSort.ForeColor = Color.DarkSlateGray;
-            btnLiveVisualSort.Location = new Point(12, 58);
+            btnLiveVisualSort.Location = new Point(14, 77);
+            btnLiveVisualSort.Margin = new Padding(3, 4, 3, 4);
             btnLiveVisualSort.Name = "btnLiveVisualSort";
-            btnLiveVisualSort.Size = new Size(265, 33);
+            btnLiveVisualSort.Size = new Size(303, 44);
             btnLiveVisualSort.TabIndex = 1;
-            btnLiveVisualSort.Text = "▶ Visualizar en Tiempo Real";
+            btnLiveVisualSort.Text = "Visualizar en Tiempo Real";
             btnLiveVisualSort.UseVisualStyleBackColor = false;
             btnLiveVisualSort.Click += btnLiveVisualSort_Click;
             // 
@@ -278,11 +289,12 @@ namespace TimSort
             btnSort.BackColor = Color.Honeydew;
             btnSort.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSort.ForeColor = Color.DarkGreen;
-            btnSort.Location = new Point(12, 22);
+            btnSort.Location = new Point(14, 29);
+            btnSort.Margin = new Padding(3, 4, 3, 4);
             btnSort.Name = "btnSort";
-            btnSort.Size = new Size(265, 32);
+            btnSort.Size = new Size(303, 43);
             btnSort.TabIndex = 0;
-            btnSort.Text = "⚡ Ordenar Directo (Instantáneo)";
+            btnSort.Text = " Ordenar Directo (Instantáneo)";
             btnSort.UseVisualStyleBackColor = false;
             btnSort.Click += btnSort_Click;
             // 
@@ -292,9 +304,11 @@ namespace TimSort
             grpSortDirection.Controls.Add(rbAscending);
             grpSortDirection.Dock = DockStyle.Top;
             grpSortDirection.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            grpSortDirection.Location = new Point(10, 215);
+            grpSortDirection.Location = new Point(11, 286);
+            grpSortDirection.Margin = new Padding(3, 4, 3, 4);
             grpSortDirection.Name = "grpSortDirection";
-            grpSortDirection.Size = new Size(290, 60);
+            grpSortDirection.Padding = new Padding(3, 4, 3, 4);
+            grpSortDirection.Size = new Size(332, 80);
             grpSortDirection.TabIndex = 1;
             grpSortDirection.TabStop = false;
             grpSortDirection.Text = "Dirección de Ordenamiento";
@@ -303,11 +317,12 @@ namespace TimSort
             // 
             rbDescending.AutoSize = true;
             rbDescending.Font = new Font("Segoe UI", 9F);
-            rbDescending.Location = new Point(145, 25);
+            rbDescending.Location = new Point(166, 33);
+            rbDescending.Margin = new Padding(3, 4, 3, 4);
             rbDescending.Name = "rbDescending";
-            rbDescending.Size = new Size(111, 19);
+            rbDescending.Size = new Size(116, 24);
             rbDescending.TabIndex = 1;
-            rbDescending.Text = "🔽 Descendente";
+            rbDescending.Text = "Descendente";
             rbDescending.UseVisualStyleBackColor = true;
             // 
             // rbAscending
@@ -315,12 +330,13 @@ namespace TimSort
             rbAscending.AutoSize = true;
             rbAscending.Checked = true;
             rbAscending.Font = new Font("Segoe UI", 9F);
-            rbAscending.Location = new Point(15, 25);
+            rbAscending.Location = new Point(17, 33);
+            rbAscending.Margin = new Padding(3, 4, 3, 4);
             rbAscending.Name = "rbAscending";
-            rbAscending.Size = new Size(103, 19);
+            rbAscending.Size = new Size(107, 24);
             rbAscending.TabIndex = 0;
             rbAscending.TabStop = true;
-            rbAscending.Text = "🔼 Ascendente";
+            rbAscending.Text = "Ascendente";
             rbAscending.UseVisualStyleBackColor = true;
             // 
             // grpDataConfig
@@ -334,54 +350,60 @@ namespace TimSort
             grpDataConfig.Controls.Add(lblDataType);
             grpDataConfig.Dock = DockStyle.Top;
             grpDataConfig.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            grpDataConfig.Location = new Point(10, 10);
+            grpDataConfig.Location = new Point(11, 13);
+            grpDataConfig.Margin = new Padding(3, 4, 3, 4);
             grpDataConfig.Name = "grpDataConfig";
-            grpDataConfig.Size = new Size(290, 205);
+            grpDataConfig.Padding = new Padding(3, 4, 3, 4);
+            grpDataConfig.Size = new Size(332, 273);
             grpDataConfig.TabIndex = 0;
             grpDataConfig.TabStop = false;
-            grpDataConfig.Text = "📦 Datos de Entrada";
+            grpDataConfig.Text = " Datos de Entrada";
             // 
             // btnSaveFile
             // 
             btnSaveFile.Font = new Font("Segoe UI", 9F);
-            btnSaveFile.Location = new Point(148, 168);
+            btnSaveFile.Location = new Point(169, 224);
+            btnSaveFile.Margin = new Padding(3, 4, 3, 4);
             btnSaveFile.Name = "btnSaveFile";
-            btnSaveFile.Size = new Size(129, 28);
+            btnSaveFile.Size = new Size(147, 37);
             btnSaveFile.TabIndex = 6;
-            btnSaveFile.Text = "💾 Guardar...";
+            btnSaveFile.Text = " Guardar...";
             btnSaveFile.UseVisualStyleBackColor = true;
             btnSaveFile.Click += btnSaveFile_Click;
             // 
             // btnLoadFile
             // 
             btnLoadFile.Font = new Font("Segoe UI", 9F);
-            btnLoadFile.Location = new Point(12, 168);
+            btnLoadFile.Location = new Point(14, 224);
+            btnLoadFile.Margin = new Padding(3, 4, 3, 4);
             btnLoadFile.Name = "btnLoadFile";
-            btnLoadFile.Size = new Size(130, 28);
+            btnLoadFile.Size = new Size(149, 37);
             btnLoadFile.TabIndex = 5;
-            btnLoadFile.Text = "📂 Importar...";
+            btnLoadFile.Text = " Importar...";
             btnLoadFile.UseVisualStyleBackColor = true;
             btnLoadFile.Click += btnLoadFile_Click;
             // 
             // btnGenerate
             // 
             btnGenerate.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnGenerate.Location = new Point(12, 130);
+            btnGenerate.Location = new Point(14, 173);
+            btnGenerate.Margin = new Padding(3, 4, 3, 4);
             btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(265, 32);
+            btnGenerate.Size = new Size(303, 43);
             btnGenerate.TabIndex = 4;
-            btnGenerate.Text = "⚡ Generar Datos Aleatorios";
+            btnGenerate.Text = " Generar Datos Aleatorios";
             btnGenerate.UseVisualStyleBackColor = true;
             btnGenerate.Click += btnGenerate_Click;
             // 
             // numElementCount
             // 
             numElementCount.Font = new Font("Segoe UI", 9F);
-            numElementCount.Location = new Point(12, 95);
+            numElementCount.Location = new Point(14, 127);
+            numElementCount.Margin = new Padding(3, 4, 3, 4);
             numElementCount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numElementCount.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
             numElementCount.Name = "numElementCount";
-            numElementCount.Size = new Size(265, 23);
+            numElementCount.Size = new Size(303, 27);
             numElementCount.TabIndex = 3;
             numElementCount.Value = new decimal(new int[] { 50, 0, 0, 0 });
             // 
@@ -389,9 +411,9 @@ namespace TimSort
             // 
             lblCount.AutoSize = true;
             lblCount.Font = new Font("Segoe UI", 8.25F);
-            lblCount.Location = new Point(12, 78);
+            lblCount.Location = new Point(14, 104);
             lblCount.Name = "lblCount";
-            lblCount.Size = new Size(127, 13);
+            lblCount.Size = new Size(153, 19);
             lblCount.TabIndex = 2;
             lblCount.Text = "Cantidad de elementos:";
             // 
@@ -400,9 +422,10 @@ namespace TimSort
             cmbDataType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbDataType.Font = new Font("Segoe UI", 9F);
             cmbDataType.FormattingEnabled = true;
-            cmbDataType.Location = new Point(12, 45);
+            cmbDataType.Location = new Point(14, 60);
+            cmbDataType.Margin = new Padding(3, 4, 3, 4);
             cmbDataType.Name = "cmbDataType";
-            cmbDataType.Size = new Size(265, 23);
+            cmbDataType.Size = new Size(302, 28);
             cmbDataType.TabIndex = 1;
             cmbDataType.SelectedIndexChanged += cmbDataType_SelectedIndexChanged;
             // 
@@ -410,9 +433,9 @@ namespace TimSort
             // 
             lblDataType.AutoSize = true;
             lblDataType.Font = new Font("Segoe UI", 8.25F);
-            lblDataType.Location = new Point(12, 28);
+            lblDataType.Location = new Point(14, 37);
             lblDataType.Name = "lblDataType";
-            lblDataType.Size = new Size(74, 13);
+            lblDataType.Size = new Size(89, 19);
             lblDataType.TabIndex = 0;
             lblDataType.Text = "Tipo de dato:";
             // 
@@ -421,24 +444,27 @@ namespace TimSort
             pnlMainContainer.Controls.Add(statusStripMain);
             pnlMainContainer.Controls.Add(tabControlMain);
             pnlMainContainer.Dock = DockStyle.Fill;
-            pnlMainContainer.Location = new Point(310, 0);
+            pnlMainContainer.Location = new Point(354, 0);
+            pnlMainContainer.Margin = new Padding(3, 4, 3, 4);
             pnlMainContainer.Name = "pnlMainContainer";
-            pnlMainContainer.Size = new Size(874, 681);
+            pnlMainContainer.Size = new Size(999, 908);
             pnlMainContainer.TabIndex = 1;
             // 
             // statusStripMain
             // 
+            statusStripMain.ImageScalingSize = new Size(20, 20);
             statusStripMain.Items.AddRange(new ToolStripItem[] { statusLabel });
-            statusStripMain.Location = new Point(0, 659);
+            statusStripMain.Location = new Point(0, 882);
             statusStripMain.Name = "statusStripMain";
-            statusStripMain.Size = new Size(874, 22);
+            statusStripMain.Padding = new Padding(1, 0, 16, 0);
+            statusStripMain.Size = new Size(999, 26);
             statusStripMain.TabIndex = 1;
             statusStripMain.Text = "statusStrip1";
             // 
             // statusLabel
             // 
             statusLabel.Name = "statusLabel";
-            statusLabel.Size = new Size(32, 17);
+            statusLabel.Size = new Size(40, 20);
             statusLabel.Text = "Listo";
             // 
             // tabControlMain
@@ -449,21 +475,23 @@ namespace TimSort
             tabControlMain.Controls.Add(tabMovements);
             tabControlMain.Controls.Add(tabTrace);
             tabControlMain.Dock = DockStyle.Fill;
-            tabControlMain.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tabControlMain.Font = new Font("Segoe UI", 9F);
             tabControlMain.Location = new Point(0, 0);
+            tabControlMain.Margin = new Padding(3, 4, 3, 4);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
-            tabControlMain.Size = new Size(874, 681);
+            tabControlMain.Size = new Size(999, 908);
             tabControlMain.TabIndex = 0;
             // 
             // tabVisualizer
             // 
             tabVisualizer.Controls.Add(pnlVisualizer);
             tabVisualizer.Controls.Add(pnlVisualizerHeader);
-            tabVisualizer.Location = new Point(4, 24);
+            tabVisualizer.Location = new Point(4, 29);
+            tabVisualizer.Margin = new Padding(3, 4, 3, 4);
             tabVisualizer.Name = "tabVisualizer";
-            tabVisualizer.Padding = new Padding(3);
-            tabVisualizer.Size = new Size(866, 653);
+            tabVisualizer.Padding = new Padding(3, 4, 3, 4);
+            tabVisualizer.Size = new Size(991, 875);
             tabVisualizer.TabIndex = 0;
             tabVisualizer.Text = "📊 Gráfica de Barras en Tiempo Real";
             tabVisualizer.UseVisualStyleBackColor = true;
@@ -472,9 +500,10 @@ namespace TimSort
             // 
             pnlVisualizer.BackColor = Color.FromArgb(24, 28, 36);
             pnlVisualizer.Dock = DockStyle.Fill;
-            pnlVisualizer.Location = new Point(3, 38);
+            pnlVisualizer.Location = new Point(3, 51);
+            pnlVisualizer.Margin = new Padding(3, 4, 3, 4);
             pnlVisualizer.Name = "pnlVisualizer";
-            pnlVisualizer.Size = new Size(860, 612);
+            pnlVisualizer.Size = new Size(985, 820);
             pnlVisualizer.TabIndex = 1;
             pnlVisualizer.Paint += pnlVisualizer_Paint;
             // 
@@ -483,18 +512,19 @@ namespace TimSort
             pnlVisualizerHeader.BackColor = SystemColors.ControlLight;
             pnlVisualizerHeader.Controls.Add(lblVisualizerStatus);
             pnlVisualizerHeader.Dock = DockStyle.Top;
-            pnlVisualizerHeader.Location = new Point(3, 3);
+            pnlVisualizerHeader.Location = new Point(3, 4);
+            pnlVisualizerHeader.Margin = new Padding(3, 4, 3, 4);
             pnlVisualizerHeader.Name = "pnlVisualizerHeader";
-            pnlVisualizerHeader.Size = new Size(860, 35);
+            pnlVisualizerHeader.Size = new Size(985, 47);
             pnlVisualizerHeader.TabIndex = 0;
             // 
             // lblVisualizerStatus
             // 
             lblVisualizerStatus.AutoSize = true;
             lblVisualizerStatus.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblVisualizerStatus.Location = new Point(10, 10);
+            lblVisualizerStatus.Location = new Point(11, 13);
             lblVisualizerStatus.Name = "lblVisualizerStatus";
-            lblVisualizerStatus.Size = new Size(393, 15);
+            lblVisualizerStatus.Size = new Size(497, 20);
             lblVisualizerStatus.TabIndex = 0;
             lblVisualizerStatus.Text = "Presione 'Visualizar en Tiempo Real' para ver la animación con sonido.";
             // 
@@ -502,10 +532,11 @@ namespace TimSort
             // 
             tabMatrix.Controls.Add(dgvMatrix);
             tabMatrix.Controls.Add(pnlMatrixControls);
-            tabMatrix.Location = new Point(4, 24);
+            tabMatrix.Location = new Point(4, 29);
+            tabMatrix.Margin = new Padding(3, 4, 3, 4);
             tabMatrix.Name = "tabMatrix";
-            tabMatrix.Padding = new Padding(3);
-            tabMatrix.Size = new Size(866, 653);
+            tabMatrix.Padding = new Padding(3, 4, 3, 4);
+            tabMatrix.Size = new Size(991, 875);
             tabMatrix.TabIndex = 1;
             tabMatrix.Text = "▦ Matriz Horizontal por Filas (Pasos)";
             tabMatrix.UseVisualStyleBackColor = true;
@@ -515,29 +546,30 @@ namespace TimSort
             dgvMatrix.AllowUserToAddRows = false;
             dgvMatrix.AllowUserToDeleteRows = false;
             dgvMatrix.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvMatrix.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvMatrix.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvMatrix.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 8.25F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvMatrix.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 8.25F);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvMatrix.DefaultCellStyle = dataGridViewCellStyle8;
             dgvMatrix.Dock = DockStyle.Fill;
-            dgvMatrix.Location = new Point(3, 43);
+            dgvMatrix.Location = new Point(3, 57);
+            dgvMatrix.Margin = new Padding(3, 4, 3, 4);
             dgvMatrix.Name = "dgvMatrix";
             dgvMatrix.ReadOnly = true;
             dgvMatrix.RowHeadersWidth = 140;
-            dgvMatrix.Size = new Size(860, 607);
+            dgvMatrix.Size = new Size(985, 814);
             dgvMatrix.TabIndex = 1;
             // 
             // pnlMatrixControls
@@ -547,9 +579,10 @@ namespace TimSort
             pnlMatrixControls.Controls.Add(cmbMatrixViewMode);
             pnlMatrixControls.Controls.Add(lblMatrixMode);
             pnlMatrixControls.Dock = DockStyle.Top;
-            pnlMatrixControls.Location = new Point(3, 3);
+            pnlMatrixControls.Location = new Point(3, 4);
+            pnlMatrixControls.Margin = new Padding(3, 4, 3, 4);
             pnlMatrixControls.Name = "pnlMatrixControls";
-            pnlMatrixControls.Size = new Size(860, 40);
+            pnlMatrixControls.Size = new Size(985, 53);
             pnlMatrixControls.TabIndex = 0;
             // 
             // lblMatrixLegend
@@ -558,9 +591,9 @@ namespace TimSort
             lblMatrixLegend.AutoSize = true;
             lblMatrixLegend.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic);
             lblMatrixLegend.ForeColor = Color.DarkGoldenrod;
-            lblMatrixLegend.Location = new Point(510, 13);
+            lblMatrixLegend.Location = new Point(585, 17);
             lblMatrixLegend.Name = "lblMatrixLegend";
-            lblMatrixLegend.Size = new Size(335, 13);
+            lblMatrixLegend.Size = new Size(467, 19);
             lblMatrixLegend.TabIndex = 2;
             lblMatrixLegend.Text = "★ Celdas en Oro/Salmón = Elementos modificados/swaps en esa pasada";
             // 
@@ -569,9 +602,10 @@ namespace TimSort
             cmbMatrixViewMode.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMatrixViewMode.FormattingEnabled = true;
             cmbMatrixViewMode.Items.AddRange(new object[] { "Evolución por Pasadas / Hitos del Algoritmo (Runs y Merges)", "Arreglo en Bloques de 50 Elementos por Fila", "Arreglo en Bloques de 40 Elementos por Fila" });
-            cmbMatrixViewMode.Location = new Point(115, 8);
+            cmbMatrixViewMode.Location = new Point(131, 11);
+            cmbMatrixViewMode.Margin = new Padding(3, 4, 3, 4);
             cmbMatrixViewMode.Name = "cmbMatrixViewMode";
-            cmbMatrixViewMode.Size = new Size(375, 23);
+            cmbMatrixViewMode.Size = new Size(428, 28);
             cmbMatrixViewMode.TabIndex = 1;
             cmbMatrixViewMode.SelectedIndexChanged += cmbMatrixViewMode_SelectedIndexChanged;
             // 
@@ -579,19 +613,20 @@ namespace TimSort
             // 
             lblMatrixMode.AutoSize = true;
             lblMatrixMode.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblMatrixMode.Location = new Point(10, 12);
+            lblMatrixMode.Location = new Point(11, 16);
             lblMatrixMode.Name = "lblMatrixMode";
-            lblMatrixMode.Size = new Size(99, 15);
+            lblMatrixMode.Size = new Size(124, 20);
             lblMatrixMode.TabIndex = 0;
             lblMatrixMode.Text = "Modo de Matriz:";
             // 
             // tabData
             // 
             tabData.Controls.Add(listBoxResults);
-            tabData.Location = new Point(4, 24);
+            tabData.Location = new Point(4, 29);
+            tabData.Margin = new Padding(3, 4, 3, 4);
             tabData.Name = "tabData";
-            tabData.Padding = new Padding(3);
-            tabData.Size = new Size(866, 653);
+            tabData.Padding = new Padding(3, 4, 3, 4);
+            tabData.Size = new Size(991, 875);
             tabData.TabIndex = 2;
             tabData.Text = "📋 Datos del Arreglo";
             tabData.UseVisualStyleBackColor = true;
@@ -601,20 +636,21 @@ namespace TimSort
             listBoxResults.Dock = DockStyle.Fill;
             listBoxResults.Font = new Font("Segoe UI", 9F);
             listBoxResults.FormattingEnabled = true;
-            listBoxResults.ItemHeight = 15;
-            listBoxResults.Location = new Point(3, 3);
+            listBoxResults.Location = new Point(3, 4);
+            listBoxResults.Margin = new Padding(3, 4, 3, 4);
             listBoxResults.Name = "listBoxResults";
-            listBoxResults.Size = new Size(860, 647);
+            listBoxResults.Size = new Size(985, 867);
             listBoxResults.TabIndex = 0;
             // 
             // tabMovements
             // 
             tabMovements.Controls.Add(listBoxMovements);
             tabMovements.Controls.Add(pnlMovementsHeader);
-            tabMovements.Location = new Point(4, 24);
+            tabMovements.Location = new Point(4, 29);
+            tabMovements.Margin = new Padding(3, 4, 3, 4);
             tabMovements.Name = "tabMovements";
-            tabMovements.Padding = new Padding(3);
-            tabMovements.Size = new Size(866, 653);
+            tabMovements.Padding = new Padding(3, 4, 3, 4);
+            tabMovements.Size = new Size(991, 875);
             tabMovements.TabIndex = 3;
             tabMovements.Text = "📜 Bitácora de Movimientos";
             tabMovements.UseVisualStyleBackColor = true;
@@ -625,10 +661,11 @@ namespace TimSort
             listBoxMovements.Font = new Font("Consolas", 9F);
             listBoxMovements.FormattingEnabled = true;
             listBoxMovements.HorizontalScrollbar = true;
-            listBoxMovements.ItemHeight = 14;
-            listBoxMovements.Location = new Point(3, 43);
+            listBoxMovements.ItemHeight = 18;
+            listBoxMovements.Location = new Point(3, 57);
+            listBoxMovements.Margin = new Padding(3, 4, 3, 4);
             listBoxMovements.Name = "listBoxMovements";
-            listBoxMovements.Size = new Size(860, 607);
+            listBoxMovements.Size = new Size(985, 814);
             listBoxMovements.TabIndex = 1;
             // 
             // pnlMovementsHeader
@@ -637,17 +674,19 @@ namespace TimSort
             pnlMovementsHeader.Controls.Add(btnExportMovements);
             pnlMovementsHeader.Controls.Add(lblMovementsTitle);
             pnlMovementsHeader.Dock = DockStyle.Top;
-            pnlMovementsHeader.Location = new Point(3, 3);
+            pnlMovementsHeader.Location = new Point(3, 4);
+            pnlMovementsHeader.Margin = new Padding(3, 4, 3, 4);
             pnlMovementsHeader.Name = "pnlMovementsHeader";
-            pnlMovementsHeader.Size = new Size(860, 40);
+            pnlMovementsHeader.Size = new Size(985, 53);
             pnlMovementsHeader.TabIndex = 0;
             // 
             // btnExportMovements
             // 
             btnExportMovements.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnExportMovements.Location = new Point(710, 6);
+            btnExportMovements.Location = new Point(813, 8);
+            btnExportMovements.Margin = new Padding(3, 4, 3, 4);
             btnExportMovements.Name = "btnExportMovements";
-            btnExportMovements.Size = new Size(140, 28);
+            btnExportMovements.Size = new Size(160, 37);
             btnExportMovements.TabIndex = 1;
             btnExportMovements.Text = "💾 Exportar Bitácora";
             btnExportMovements.UseVisualStyleBackColor = true;
@@ -657,9 +696,9 @@ namespace TimSort
             // 
             lblMovementsTitle.AutoSize = true;
             lblMovementsTitle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblMovementsTitle.Location = new Point(10, 12);
+            lblMovementsTitle.Location = new Point(11, 16);
             lblMovementsTitle.Name = "lblMovementsTitle";
-            lblMovementsTitle.Size = new Size(244, 15);
+            lblMovementsTitle.Size = new Size(358, 20);
             lblMovementsTitle.TabIndex = 0;
             lblMovementsTitle.Text = "Registro exacto de desplazamientos e inserciones:";
             // 
@@ -667,10 +706,11 @@ namespace TimSort
             // 
             tabTrace.Controls.Add(listBoxTrace);
             tabTrace.Controls.Add(panelTraceHeader);
-            tabTrace.Location = new Point(4, 24);
+            tabTrace.Location = new Point(4, 29);
+            tabTrace.Margin = new Padding(3, 4, 3, 4);
             tabTrace.Name = "tabTrace";
-            tabTrace.Padding = new Padding(3);
-            tabTrace.Size = new Size(866, 653);
+            tabTrace.Padding = new Padding(3, 4, 3, 4);
+            tabTrace.Size = new Size(991, 875);
             tabTrace.TabIndex = 4;
             tabTrace.Text = "🔍 Trazabilidad y Comparaciones";
             tabTrace.UseVisualStyleBackColor = true;
@@ -681,10 +721,11 @@ namespace TimSort
             listBoxTrace.Font = new Font("Consolas", 9F);
             listBoxTrace.FormattingEnabled = true;
             listBoxTrace.HorizontalScrollbar = true;
-            listBoxTrace.ItemHeight = 14;
-            listBoxTrace.Location = new Point(3, 43);
+            listBoxTrace.ItemHeight = 18;
+            listBoxTrace.Location = new Point(3, 57);
+            listBoxTrace.Margin = new Padding(3, 4, 3, 4);
             listBoxTrace.Name = "listBoxTrace";
-            listBoxTrace.Size = new Size(860, 607);
+            listBoxTrace.Size = new Size(985, 814);
             listBoxTrace.TabIndex = 1;
             // 
             // panelTraceHeader
@@ -693,17 +734,19 @@ namespace TimSort
             panelTraceHeader.Controls.Add(btnSaveTrace);
             panelTraceHeader.Controls.Add(lblTraceSummary);
             panelTraceHeader.Dock = DockStyle.Top;
-            panelTraceHeader.Location = new Point(3, 3);
+            panelTraceHeader.Location = new Point(3, 4);
+            panelTraceHeader.Margin = new Padding(3, 4, 3, 4);
             panelTraceHeader.Name = "panelTraceHeader";
-            panelTraceHeader.Size = new Size(860, 40);
+            panelTraceHeader.Size = new Size(985, 53);
             panelTraceHeader.TabIndex = 0;
             // 
             // btnSaveTrace
             // 
             btnSaveTrace.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSaveTrace.Location = new Point(710, 6);
+            btnSaveTrace.Location = new Point(813, 8);
+            btnSaveTrace.Margin = new Padding(3, 4, 3, 4);
             btnSaveTrace.Name = "btnSaveTrace";
-            btnSaveTrace.Size = new Size(140, 28);
+            btnSaveTrace.Size = new Size(160, 37);
             btnSaveTrace.TabIndex = 1;
             btnSaveTrace.Text = "💾 Exportar Traza";
             btnSaveTrace.UseVisualStyleBackColor = true;
@@ -713,20 +756,21 @@ namespace TimSort
             // 
             lblTraceSummary.AutoSize = true;
             lblTraceSummary.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblTraceSummary.Location = new Point(10, 12);
+            lblTraceSummary.Location = new Point(11, 16);
             lblTraceSummary.Name = "lblTraceSummary";
-            lblTraceSummary.Size = new Size(307, 15);
+            lblTraceSummary.Size = new Size(387, 20);
             lblTraceSummary.TabIndex = 0;
             lblTraceSummary.Text = "Ejecute TimSort para registrar comparaciones y pasos.";
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1184, 681);
+            ClientSize = new Size(1353, 908);
             Controls.Add(pnlMainContainer);
             Controls.Add(pnlSidebar);
-            MinimumSize = new Size(1000, 600);
+            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(1140, 784);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Algoritmo de Ordenamiento TimSort - Visualizador Avanzado y Matriz de Pasos";

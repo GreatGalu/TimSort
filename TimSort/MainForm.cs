@@ -801,5 +801,10 @@ namespace TimSort
         }
 
         #endregion
+
+        private void chkSound_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

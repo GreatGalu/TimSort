@@ -25,10 +25,10 @@ namespace TimSort.Services
         void Generate(int count);
         SortMetrics Sort(bool ascending, bool recordSteps = true, int maxTraceSteps = 2000);
         Task<SortMetrics> SortVisualAsync(bool ascending, Func<SortVisualUpdate, Task>? onVisualUpdate, CancellationToken cancellationToken = default);
-        
+
         /// <summary>
         /// Obtiene la altura relativa normalizada (0.05 a 1.0) del elemento en el índice indicado
-        /// para el visualizador gráfico de barras.
+        /// para el visualizador gráfico de barras, sincronizado con las reglas de normalización alfabética.
         /// </summary>
         double GetNormalizedHeight(int index);
 
@@ -47,6 +47,18 @@ namespace TimSort.Services
         private readonly Func<int, List<T>> _generator;
         private readonly IComparer<T> _comparer;
 
+        // Límites en caché para renderizado de barras rápido y proporcional
+        private double _minStringWeight;
+        private double _maxStringWeight;
+        private int _minCharVal;
+        private int _maxCharVal;
+        private int _minInt;
+        private int _maxInt;
+        private double _minDouble;
+        private double _maxDouble;
+        private int _minCustomId;
+        private int _maxCustomId;
+
         public string DisplayName { get; }
         public bool HasData => _data.Count > 0;
         public int Count => _data.Count;
@@ -64,6 +76,7 @@ namespace TimSort.Services
         {
             _data = _generator(count) ?? new List<T>();
             LastMetrics = null;
+            RefreshBounds();
         }
 
         public SortMetrics Sort(bool ascending, bool recordSteps = true, int maxTraceSteps = 2000)
@@ -92,6 +105,53 @@ namespace TimSort.Services
             return metrics;
         }
 
+        /// <summary>
+        /// Recalcula los valores mínimos y máximos de la colección actual para que la escala
+        /// visual de las barras aproveche toda la altura de la gráfica de manera proporcional.
+        /// </summary>
+        private void RefreshBounds()
+        {
+            if (_data.Count == 0) return;
+
+            try
+            {
+                if (typeof(T) == typeof(int))
+                {
+                    var list = (List<int>)(object)_data;
+                    _minInt = list.Min();
+                    _maxInt = list.Max();
+                }
+                else if (typeof(T) == typeof(double))
+                {
+                    var list = (List<double>)(object)_data;
+                    _minDouble = list.Min();
+                    _maxDouble = list.Max();
+                }
+                else if (typeof(T) == typeof(CustomItem))
+                {
+                    var list = (List<CustomItem>)(object)_data;
+                    _minCustomId = list.Min(x => x.Id);
+                    _maxCustomId = list.Max(x => x.Id);
+                }
+                else if (typeof(T) == typeof(char))
+                {
+                    var list = (List<char>)(object)_data;
+                    _minCharVal = list.Min(c => NormalizedStringComparer.GetNormalizedCharValue(c));
+                    _maxCharVal = list.Max(c => NormalizedStringComparer.GetNormalizedCharValue(c));
+                }
+                else if (typeof(T) == typeof(string))
+                {
+                    var list = (List<string>)(object)_data;
+                    _minStringWeight = list.Min(s => NormalizedStringComparer.GetNormalizedWordWeight(s));
+                    _maxStringWeight = list.Max(s => NormalizedStringComparer.GetNormalizedWordWeight(s));
+                }
+            }
+            catch
+            {
+                // Fallback silencioso
+            }
+        }
+
         public double GetNormalizedHeight(int index)
         {
             if (index < 0 || index >= _data.Count) return 0.5;
@@ -101,49 +161,65 @@ namespace TimSort.Services
                 if (typeof(T) == typeof(int))
                 {
                     var list = (List<int>)(object)_data;
-                    int min = list.Min();
-                    int max = list.Max();
-                    if (max == min) return 0.5;
-                    return 0.05 + 0.95 * ((double)(list[index] - min) / (max - min));
+                    if (_maxInt > _minInt)
+                    {
+                        return 0.05 + 0.95 * ((double)(list[index] - _minInt) / (_maxInt - _minInt));
+                    }
+                    return 0.5;
                 }
 
                 if (typeof(T) == typeof(double))
                 {
                     var list = (List<double>)(object)_data;
-                    double min = list.Min();
-                    double max = list.Max();
-                    if (Math.Abs(max - min) < 0.0001) return 0.5;
-                    return 0.05 + 0.95 * ((list[index] - min) / (max - min));
+                    if (_maxDouble > _minDouble)
+                    {
+                        return 0.05 + 0.95 * ((list[index] - _minDouble) / (_maxDouble - _minDouble));
+                    }
+                    return 0.5;
                 }
 
                 if (typeof(T) == typeof(CustomItem))
                 {
                     var list = (List<CustomItem>)(object)_data;
-                    int min = list.Min(x => x.Id);
-                    int max = list.Max(x => x.Id);
-                    if (max == min) return 0.5;
-                    return 0.05 + 0.95 * ((double)(list[index].Id - min) / (max - min));
+                    if (_maxCustomId > _minCustomId)
+                    {
+                        return 0.05 + 0.95 * ((double)(list[index].Id - _minCustomId) / (_maxCustomId - _minCustomId));
+                    }
+                    return 0.5;
                 }
 
+                // Normalización sincronizada para caracteres individuales
                 if (typeof(T) == typeof(char))
                 {
                     var list = (List<char>)(object)_data;
                     char ch = list[index];
-                    string s = ch.ToString().ToUpperInvariant();
-                    char baseChar = s.Length > 0 ? s[0] : ch;
-                    int val = baseChar - 'A';
-                    val = Math.Clamp(val, 0, 26);
-                    return 0.05 + 0.95 * (val / 26.0);
+                    int charVal = NormalizedStringComparer.GetNormalizedCharValue(ch);
+
+                    // Escalar proporcionalmente al rango presente en la colección
+                    if (_maxCharVal > _minCharVal)
+                    {
+                        return 0.05 + 0.95 * ((double)(charVal - _minCharVal) / (_maxCharVal - _minCharVal));
+                    }
+
+                    // Escala absoluta sobre las 27 letras del alfabeto español (1 a 27)
+                    return 0.05 + 0.95 * ((double)(Math.Max(1, charVal) - 1) / 26.0);
                 }
 
+                // Normalización sincronizada para palabras con peso posicional en base 28
                 if (typeof(T) == typeof(string))
                 {
-                    // Rango proporcional a la primera letra / longitud
-                    var str = _data[index]?.ToString() ?? "";
-                    if (str.Length == 0) return 0.05;
-                    char first = char.ToUpperInvariant(str[0]);
-                    int val = Math.Clamp(first - 'A', 0, 26);
-                    return 0.05 + 0.95 * (val / 26.0);
+                    var list = (List<string>)(object)_data;
+                    string word = list[index];
+                    double weight = NormalizedStringComparer.GetNormalizedWordWeight(word);
+
+                    // Escalar proporcionalmente al rango presente en la colección
+                    if (_maxStringWeight > _minStringWeight)
+                    {
+                        return 0.05 + 0.95 * ((weight - _minStringWeight) / (_maxStringWeight - _minStringWeight));
+                    }
+
+                    const double MaxTheoreticalWeight = 17210368.0; // 28^5
+                    return 0.05 + 0.95 * (weight / MaxTheoreticalWeight);
                 }
             }
             catch
@@ -168,6 +244,7 @@ namespace TimSort.Services
             }
             _data = loaded;
             LastMetrics = null;
+            RefreshBounds();
         }
 
         public IReadOnlyList<object> GetItems()
@@ -179,6 +256,11 @@ namespace TimSort.Services
         {
             _data.Clear();
             LastMetrics = null;
+            _minStringWeight = _maxStringWeight = 0;
+            _minCharVal = _maxCharVal = 0;
+            _minInt = _maxInt = 0;
+            _minDouble = _maxDouble = 0;
+            _minCustomId = _maxCustomId = 0;
         }
 
         public override string ToString() => DisplayName;
